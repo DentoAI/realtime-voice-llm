@@ -46,26 +46,6 @@ const tools = [
   {
     type: 'function',
     function: {
-      name: 'generalInfoInvisalign',
-      description: 'Provides a short summary of the Invisalign treatment for a specific case.',
-      parameters: {
-        type: 'object',
-        properties: {
-          fullName: { type: 'string', description: 'The full name of the patient.' },
-        },
-        required: ['fullName'],
-      },
-      returns: {
-        type: 'object',
-        properties: {
-          summary: { type: 'string', description: 'Short summary of the Invisalign treatment.' },
-        },
-      },
-    },
-  },
-  {
-    type: 'function',
-    function: {
       name: 'checkAvailability',
       description: 'Checks appointment availability for the next two weeks, avoiding previously suggested dates.',
       parameters: {
