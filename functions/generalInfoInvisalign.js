@@ -5,16 +5,16 @@ async function generalInfoInvisalign(functionArgs) {
   // Example specific case
   const caseDetails = {
     fullName: fullName,
-    treatmentStartDate: "2024-01-15",
-    expectedEndDate: "2025-01-15",
+    treatmentStartDate: '2024-01-15',
+    expectedEndDate: '2025-01-15',
     alignersUsed: 12,
     currentStage: 5,
-    treatmentDuration: "6 months",
-    remainingDuration: "6 months",
+    treatmentDuration: '6 months',
+    remainingDuration: '6 months',
     cost: 5000,
     coveredByInsurance: true,
-    complications: "Minor adjustments needed",
-    comments: "Patient is progressing well with minor adjustments needed."
+    complications: 'Minor adjustments needed',
+    comments: 'Patient is progressing well with minor adjustments needed.'
   };
 
   const summary = `Invisalign treatment for ${caseDetails.fullName} started on ${caseDetails.treatmentStartDate} and is expected to end on ${caseDetails.expectedEndDate}. 

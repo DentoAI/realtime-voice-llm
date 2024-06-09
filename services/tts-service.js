@@ -7,6 +7,7 @@ class TextToSpeechService extends EventEmitter {
     super();
     this.config = config;
     this.config.voiceId ||= process.env.VOICE_ID;
+    this.config.optimize_streaming_latency = process.env.OPTIMIZE_STREAMING_LATENCY;
     this.nextExpectedIndex = 0;
     this.speechBuffer = {};
   }
@@ -19,7 +20,7 @@ class TextToSpeechService extends EventEmitter {
     try {
       const outputFormat = 'ulaw_8000';
       const response = await fetch(
-        `https://api.elevenlabs.io/v1/text-to-speech/${this.config.voiceId}/stream?output_format=${outputFormat}&optimize_streaming_latency=3`,
+        `https://api.elevenlabs.io/v1/text-to-speech/${this.config.voiceId}/stream?output_format=${outputFormat}&optimize_streaming_latency=${this.config.optimize_streaming_latency}`,
         {
           method: 'POST',
           headers: {
@@ -29,6 +30,9 @@ class TextToSpeechService extends EventEmitter {
           },
           // TODO: Pull more config? https://docs.elevenlabs.io/api-reference/text-to-speech-stream
           body: JSON.stringify({
+            stability: process.env.STABILITY,
+            similarity_boost: process.env.SIMILARITY_BOOST,
+            use_speaker_boost: process.env.USE_SPEAKER_BOOST,
             model_id: process.env.XI_MODEL_ID,
             text: partialResponse,
           }),
