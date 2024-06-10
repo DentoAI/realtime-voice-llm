@@ -87,6 +87,55 @@ const tools = [
         }
       }
     }
+  },
+  {
+    type: 'function',
+    function: {
+      name: 'checkAvailabilityByDays',
+      description: 'Checks appointment availability based on the number of days from today, avoiding weekends and previously suggested dates.',
+      parameters: {
+        type: 'object',
+        properties: {
+          suggestedDates: {
+            type: 'array',
+            items: {
+              type: 'string',
+              description: 'A list of previously suggested dates in YYYY-MM-DD format.'
+            },
+            description: 'Array of dates that have already been suggested to avoid redundancy.'
+          },
+          daysFromToday: {
+            type: 'number',
+            description: 'The number of days from today to check for availability.'
+          }
+        },
+        required: ['daysFromToday']
+      },
+      returns: {
+        type: 'object',
+        properties: {
+          availability: {
+            type: 'object',
+            properties: {
+              date: { type: 'string', description: 'The date of availability in YYYY-MM-DD format.' },
+              time: { type: 'string', description: 'Available time slot.' },
+              suggestedDates: {
+                type: 'array',
+                items: {
+                  type: 'string',
+                  description: 'A list of all suggested dates including the newly suggested date.'
+                },
+                description: 'Updated array of suggested dates.'
+              }
+            }
+          },
+          error: {
+            type: 'string',
+            description: 'Error message if no available dates are found.'
+          }
+        }
+      }
+    }
   }
 ];
 
