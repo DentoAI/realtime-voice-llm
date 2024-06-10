@@ -10,13 +10,22 @@ const tools = [
           date: { type: 'string', description: 'The date of the appointment.' },
           time: { type: 'string', description: 'The time of the appointment.' },
           patientName: { type: 'string', description: 'The name of the patient.' },
+          suggestedDates: {
+            type: 'array',
+            items: {
+              type: 'string',
+              description: 'A list of previously suggested dates in YYYY-MM-DD format.'
+            },
+            description: 'Array of dates that have already been suggested to avoid redundancy.',
+          }
         },
-        required: ['date', 'time', 'patientName'],
+        required: ['date', 'time', 'patientName', 'suggestedDates'],
       },
       returns: {
         type: 'object',
         properties: {
           confirmation: { type: 'string', description: 'Confirmation message.' },
+          error: { type: 'string', description: 'Error message if there is no availability on the given date.' }
         },
       },
     },
